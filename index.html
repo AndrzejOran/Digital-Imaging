@@ -32,12 +32,7 @@
 	
 	<script type="text/javascript" async
 		src="./MathJax/MathJax.js?config=AM_HTMLorMML-full">
-		
-		<!-- src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?..." -->
 	</script>
-	
-	
-
 	
 </head>
 
@@ -108,6 +103,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Some Background</h2>
+				<p>Useful Knowledge: Multivariate Calculus, Linear Algebra, Fourier Transform, MATLAB
                 <p>Digital images are made up of many individual pixels oraganized into rows and colums.
 				That makes them discrete and two dimensional.</p>
 				
@@ -118,7 +114,7 @@
 				</p>
 				
 				<a href="https://www.w3schools.com/colors/colors_picker.asp">W3 Schools Color Picker</a>
-				<p>Pink: Hex value = #ff8080 rgb(255, 128, 128)</p>
+				<p>Pink: Hex value = #ff8080, rgb(255, 128, 128)</p>
                 <img src="./img/pixelwatermelon.png">
 				<p></p>
             </div>
@@ -130,16 +126,16 @@
         <div class="download-section">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <h2>Discrete Convolution (Method 1)</h2>
+                    <h2>Two Dimensional Discrete Convolution (Method 1)</h2>
                     <p>Convolution (Denoted `**`  ) expresses the amount of overlap of one function as it is shifted 
-					over another function, producing a third function.</p> <br>
+					over another function, producing a third function. The definition is given below:</p> <br>
 					
-					<p> ` y(m,n) = x(m,n) ** h(m,n) = sum_(j= -oo)^oo sum_(i= -oo)^oo x(i,j) * h(m-i,n-j)`
+					<p> ` y(m,n) = g(m,n) ** h(m,n) = sum_(j= -oo)^oo sum_(i= -oo)^oo g(i,j) * h(m-i,n-j)`
 					</p>
 					
 					<p>
 					Output = y[m,n] <br>
-					Input  = x[m,n] <br>
+					Input  = g[m,n] <br>
 					Filter = h[m,n]
 					
 					<p> For image processing, the steps taken are:
@@ -158,11 +154,14 @@
 					Blue = Input <br>
 					Grey = Filter <br>
 					Teal = Output </p>
-					<img src="/Digital-Imaging/img/discreteconvol.gif" > <br>
+					<img src="./img/discreteconvol.gif" > <br>
 					<a href="https://github.com/vdumoulin/conv_arithmetic"> Convolution Arithmetic Repository</a>
                 
-					<p> Continuous Convolution </p>
-					<img src="/Digital-Imaging/img/continconvol.gif" > <br><br>
+					<br><br><br>
+					<p>Extra: Continuous Convolution <br>
+					Definition: `[f**g](t) = int_0^t f(r)g(t-r)dr`</p>
+					
+					<img src="./img/continconvol.gif" > <br><br>
 					<a href="http://mathworld.wolfram.com/Convolution.html"> Mathworld: Convolution</a>
 				</div>
             </div>
@@ -175,19 +174,22 @@
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Fourier Transforms (Method 2)</h2>
                 <p>The Fourier Transform (Denoted `&Fouriertrf;`  ) is used to 
-				turn a function with a domain of time `(t)` to a domain of frequency `f`.</p>
+				turn functions with a domain of time `g(t)` to a domain of frequency `hat(g)(f)`.
+				This process can be reversed using the Inverse Fourier Transform (Denoted `&Fouriertrf;^-1`).</p>
 				
 				<p> `&Fouriertrf; (g(t)) = hat (g) (f) = int_-oo^oo g(t)e^(-2pi itf) dt `</p>
 				
-				<p> `&Fouriertrf;^-1 (hat (g)(f)) = (g) (f) = int_-oo^oo hat(g)(f)e^(2pi itf) df `</p>
+				<p> `&Fouriertrf;^-1 (hat (g)(f)) = g(f) = int_-oo^oo hat(g)(f)e^(2pi itf) df `</p>
 				
 				<p>The Convolution Property of the Fourier Transform</p>
 				
 
-<p>
-`f(x,y) ** h(x,y) hArr F(u,v)*H(u,v) ` <br>
-Convolution in Space Domain = Multiplication in Frequency Domain
-</p>
+				<p>
+				`f(x,y) ** h(x,y) hArr F(u,v)*H(u,v) ` <br>
+				Convolution in Space Domain = Multiplication in Frequency Domain
+				</p>
+				
+				<img src="./img/methods.png">
 				
 				
             </div>
