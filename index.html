@@ -29,10 +29,16 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+	
 	<script type="text/javascript" async
-		src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?...">
+		src="./MathJax/MathJax.js?config=AM_HTMLorMML-full">
+		
+		<!-- src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?..." -->
 	</script>
+	
+	
 
+	
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
@@ -65,6 +71,10 @@
                     <li>
                         <a class="page-scroll" href="#contact">Fourier Transform</a>
                     </li>
+					
+					<li>
+                        <a class="page-scroll" href="#example">Example</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -79,8 +89,10 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <h1 class="brand-heading">Digital Image Processing</h1>
-                        <p class="intro-text">Goal: Provide a mathematical and intuitive guide to 
-						perform processing on digital images.
+                        <p class="intro-text">Goal: Provide a mathematical and intuitive guide on how to 
+						apply a filter to a digital image. <br>
+						
+						https://www.mathjax.org/
 						</p>
                         <a href="#about" class="btn btn-circle page-scroll">
                             <i class="fa fa-angle-double-down animated"></i>
@@ -97,7 +109,7 @@
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Some Background</h2>
                 <p>Digital images are made up of many individual pixels oraganized into rows and colums.
-				That makes them discrete and two dimensional</p>
+				That makes them discrete and two dimensional.</p>
 				
 				
                 
@@ -106,9 +118,8 @@
 				</p>
 				
 				<a href="https://www.w3schools.com/colors/colors_picker.asp">W3 Schools Color Picker</a>
-				<p>Pink: #ff8080
-rgb(255, 128, 128)</p>
-                <img src="/Digital-Imaging/img/pixelwatermelon.png">
+				<p>Pink: Hex value = #ff8080 rgb(255, 128, 128)</p>
+                <img src="./img/pixelwatermelon.png">
 				<p></p>
             </div>
         </div>
@@ -119,27 +130,39 @@ rgb(255, 128, 128)</p>
         <div class="download-section">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <h2>Discrete Convolution</h2>
-                    <p>Convolution expresses the amount of overlap of one function as it is shifted 
+                    <h2>Discrete Convolution (Method 1)</h2>
+                    <p>Convolution (Denoted `**`  ) expresses the amount of overlap of one function as it is shifted 
 					over another function, producing a third function.</p> <br>
 					
-					<img src="/Digital-Imaging/img/convoltheory.gif" > <br>
+					<p> ` y(m,n) = x(m,n) ** h(m,n) = sum_(j= -oo)^oo sum_(i= -oo)^oo x(i,j) * h(m-i,n-j)`
+					</p>
 					
 					<p>
 					Output = y[m,n] <br>
 					Input  = x[m,n] <br>
 					Filter = h[m,n]
 					
-					<p> For image processing, that involves sliding a filter(kernel) 
-					over each pixel, then setting each center point of the filter to 
+					<p> For image processing, the steps taken are:
+					
+					Overlap your filter ontop of your input image at the pixe.
+					Multiply any overlapping 
+					
+					
+
+					that involves sliding a filter(kernel) 
+					over each pixel, setting each center point of the filter to 
 					the sum of point-wise multiplications of overlapping pixel and filter values.</p>
                     
 					<p> Discrete Convolution</p>
+					<p> 
+					Blue = Input <br>
+					Grey = Filter <br>
+					Teal = Output </p>
 					<img src="/Digital-Imaging/img/discreteconvol.gif" > <br>
 					<a href="https://github.com/vdumoulin/conv_arithmetic"> Convolution Arithmetic Repository</a>
                 
 					<p> Continuous Convolution </p>
-					<img src="/Digital-Imaging/img/continconvol.gif" > <br>
+					<img src="/Digital-Imaging/img/continconvol.gif" > <br><br>
 					<a href="http://mathworld.wolfram.com/Convolution.html"> Mathworld: Convolution</a>
 				</div>
             </div>
@@ -150,8 +173,36 @@ rgb(255, 128, 128)</p>
     <section id="contact" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>Fourier Transform</h2>
-                <p>give us suggestions for new templates and themes, or to just say hello!</p>
+                <h2>Fourier Transforms (Method 2)</h2>
+                <p>The Fourier Transform (Denoted `&Fouriertrf;`  ) is traditionally used to turn a function with a domain of time 
+				to a domain of frequency.</p>
+				
+				<p> `&Fouriertrf; (g(t)) = hat (g) (f) = int_-oo^oo g(t)e^(-2pi it `</p>
+				
+				<p>The Convolution Property of the Fourier Transform</p>
+				
+
+<p>
+`f(x,y) ** h(x,y) hArr F(u,v)*H(u,v) ` <br>
+Convolution in Space Domain = Multiplication in Frequency Domain
+</p>
+				
+				
+            </div>
+        </div>
+    </section>
+	
+	<!-- Example Section -->
+    <section id="example" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>Matlab Example</h2>
+                <p>The Fourier Transform is traditionally used to turn a function with a domain of time 
+				to a domain of frequency.</p>
+
+				
+
+				
                 <p><a href="mailto:a.oraniewicz@gmail.com">a.oraniewicz@gmail.com</a>
                 </p>
                 <ul class="list-inline banner-social-buttons">
@@ -159,6 +210,9 @@ rgb(255, 128, 128)</p>
                         <a href="https://github.com/AndrzejOran" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
                     </li>
                 </ul>
+				
+				<p> References: <br>
+				http://www.thefouriertransform.com/transform/properties.php</p>
             </div>
         </div>
     </section>
@@ -169,7 +223,7 @@ rgb(255, 128, 128)</p>
     <!-- Footer -->
     <footer>
         <div class="container text-center">
-            <p>Copyright &copy; Your Website 2016</p>
+            <!-- <p>Copyright &copy; Your Website 2016</p> -->
         </div>
     </footer>
 
