@@ -154,21 +154,28 @@
 						<li>Repeat this process for every pixel of the input image.<br>
 						</li>
 					</ol>
+					For Example:
+					<img src="./img/convolexample.gif">
+					`y[0,0] = 0*1 + 0*2 + 0*1 + 0*0+1*0+2*0+0*(-1)+4*(-2)+5*(-1)=-13`<br><br>
 					
                     
-					<p> Discrete Convolution</p>
+					
+					
+					<img class="pics" src="./img/discreteconvol.gif" >  <br>
+					<a href="https://github.com/vdumoulin/conv_arithmetic"> Convolution Arithmetic Repository</a>
 					<p> 
 					Blue = Input <br>
 					Grey = Filter <br>
 					Teal = Output </p>
-					<img src="./img/discreteconvol.gif" > <br>
-					<a href="https://github.com/vdumoulin/conv_arithmetic"> Convolution Arithmetic Repository</a>
+					
                 
 					<br><br><br>
-					<p>Extra: Continuous Convolution <br>
+					<p>Bonus: Continuous Convolution <br>
 					Definition: `[f**g](t) = int_0^t f(r)g(t-r)dr`</p>
+					<img class="pics" src="./img/continconvol.gif" >
 					
-					<img src="./img/continconvol.gif" > <br><br>
+					
+					 <br><br>
 					<a href="http://mathworld.wolfram.com/Convolution.html"> Mathworld: Convolution</a>
 				</div>
             </div>
@@ -226,7 +233,7 @@
 				Applying filters by directly solving the convolution (Method 1) turns out to get much
 				more expensive as the size of the filter and input image grows.
 				(For each pixel in the input image, every pixel in the filter image gets multiplied and
-				summated. Thats alot of multiplication!)</p>
+				summated. That's a lot of multiplication!)</p>
 				
 			
 				
@@ -277,13 +284,26 @@
 				<a href="https://www.mathjax.org/">MathJax</a>. 
 				It is an extremely flexible JavaScript API for displaying mathematics.</p>
 				<p> References: <br>
-				http://www.thefouriertransform.com/transform/properties.php <br>
-				http://www.di.univr.it/documenti/OccorrenzaIns/matdid/matdid027832.pdf<br>
-				https://graphics.stanford.edu/courses/cs178/applets/convolution.html<br>
-				http://web.cs.wpi.edu/~emmanuel/courses/cs545/S14/slides/lecture10.pdf<br>
-				http://matlabgeeks.com/tips-tutorials/how-to-blur-an-image-with-a-fourier-transform-in-matlab-part-i/<br>
-				http://mathworld.wolfram.com/Convolution.html</p>
-            </div>
+				 
+				
+				
+				
+				
+				</p>
+				<a href="http://www.thefouriertransform.com/transform/properties.php"> 
+				http://www.thefouriertransform.com/transform/properties.php</a>
+				<br><a href="http://www.di.univr.it/documenti/OccorrenzaIns/matdid/matdid027832.pdf"> 
+				http://www.di.univr.it/documenti/OccorrenzaIns/matdid/matdid027832.pdf</a>
+				<br><a href="https://graphics.stanford.edu/courses/cs178/applets/convolution.html"> 
+				https://graphics.stanford.edu/courses/cs178/applets/convolution.html</a>
+				<br><a href="http://web.cs.wpi.edu/~emmanuel/courses/cs545/S14/slides/lecture10.pdf"> 
+				http://web.cs.wpi.edu/~emmanuel/courses/cs545/S14/slides/lecture10.pdf</a>
+				<br><a href="http://matlabgeeks.com/tips-tutorials/how-to-blur-an-image-with-a-fourier-transform-in-matlab-part-i/">
+				http://matlabgeeks.com/tips-tutorials/how-to-blur-an-image-with-a-fourier-transform-in-matlab-part-i/</a>
+				<br><a href="http://mathworld.wolfram.com/Convolution.html">http://mathworld.wolfram.com/Convolution.html </a>
+				<br><a href="http://fourier.eng.hmc.edu/e101/lectures/fourier/node25.html">
+				http://fourier.eng.hmc.edu/e101/lectures/fourier/node25.html</a>
+			</div>
         </div>
     </section>
 
