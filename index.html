@@ -85,9 +85,9 @@
                     <div class="col-md-8 col-md-offset-2">
                         <h1 class="brand-heading">Digital Image Processing</h1>
                         <p class="intro-text">Goal: Provide a mathematical and intuitive guide on how to 
-						apply a filter to a digital image. <br>
+						apply filters to digital images. Two methods will be looked at.<br>
 						
-						https://www.mathjax.org/
+						
 						</p>
                         <a href="#about" class="btn btn-circle page-scroll">
                             <i class="fa fa-angle-double-down animated"></i>
@@ -128,27 +128,29 @@
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2>Two Dimensional Discrete Convolution <br>(Method 1)</h2>
                     <p>Convolution (Denoted `**`  ) expresses the amount of overlap of one function as it is shifted 
-					over another function, producing a third function. The definition is given below:</p> <br>
+					over another function, producing a third function. For discrete cases(Digital Images) it
+					can be thought of as a weighted sum of the overlapping points surrounding a given pixel.
+					The discrete definition is given below:</p> <br>
 					
 					<p> ` y(m,n) = g(m,n) ** h(m,n) = sum_(i=o)^(m-1) sum_(j=o)^(n-1) g(i,j) * h(m-i,n-j)` <br>
 					where m = Rows, n = Columns
 					</p>
 					
 					<p>
-					Output = `y(m,n)` <br>
 					Input  = `g(m,n)` <br>
-					Filter = `h(m,n)`
+					Filter = `h(m,n)` <br>
+					Output = `y(m,n)`
 					
-					<p> For image processing, the steps taken are:
-					
-					Overlap your filter ontop of your input image at the pixe.
-					Multiply any overlapping 
-					
-					
-
-					that involves sliding a filter(kernel) 
-					over each pixel, setting each center point of the filter to 
-					the sum of point-wise multiplications of overlapping pixel and filter values.</p>
+					<ol style="font-size: 20px;"><p style="text-decoration:underline;">Applying Filters by Solving Convolution</p>
+						<li>Overlap the filter ontop of the input's origin, (0,0). <br>
+						</li>
+						
+						<li>Perform multiplication on overlapping cells and summate them.<br>
+						</li>
+						
+						<li>The result from step 2 becomes the value at (0,0) for the output image<br>
+						</li>
+					</ol>
                     
 					<p> Discrete Convolution</p>
 					<p> 
@@ -181,7 +183,7 @@
 				In terms of digital images you can think of the transform like this:</p>
 				
 				<p>Space Domain    
-				(Pixel Corrdinates)	<br>	
+				(Pixel Coordinates)	<br>	
 				`g(m,n)` where `m` = Rows , `n` = Columns <br> 
 			
 				`&Fouriertrf;^^^` <br> `vvv&Fouriertrf;^-1` <br>
@@ -189,15 +191,15 @@
 				(Number of cycles per degree of visual angle)<br>
 				`hat(g)(k,l)` where `k` = Horizontal Frequency, `l` = Vertical Frequency</p>
 				
-				<p>For Continuous Functions:</p>
+				<p style="text-decoration:underline;">Definition For Continuous Functions:</p>
 				<p> `&Fouriertrf; (g(t)) = hat (g) (f) = int_-oo^oo g(t)e^(-2pi itf) dt `</p>
 				
 				<p> `&Fouriertrf;^-1 (hat (g)(f)) = g(f) = int_-oo^oo hat(g)(f)e^(2pi itf) df `</p>
 				
-				<p>For 2D Discrete Functions</p>
-				<p> `&Fouriertrf; (g(k,l)) = hat (g) (k,l) = sum_(m=0)^(M-1) sum_(n=0)^(N-1) g(m,n)e^(-2pi itf) dt `</p>
+				<p style="text-decoration:underline;">Definition For 2D Discrete Functions</p>
+				<p> `&Fouriertrf; (g(m,n)) = hat (g) (k,l) = sum_(m=0)^(M-1) sum_(n=0)^(N-1) g(m,n)e^(-2pi(mk/M + nl/N) ) `</p>
 				
-				<p> `&Fouriertrf;^-1 (hat (g)(f)) = g(f) = int_-oo^oo hat(g)(f)e^(2pi itf) df `</p>
+				<p> `&Fouriertrf;^-1 (hat(g)(k,l)) = g(m,n) = 1/(MN) sum_(m=0)^(M-1) sum_(n=0)^(N-1) hat(g)(k,l)e^(2pi(mk/M + nl/N) ) `</p>
 				
 				<p style="text-decoration:underline;">Periodicity and Discrete Fourier Transforms<p>
 				<p>It is important to note that 2D DFTs are periodic functions. Meaning, the output of the
@@ -210,14 +212,35 @@
 				
 				<p style="text-decoration:underline;">The Convolution Property of the Fourier Transform</p>
 				
-				<p> </p>
+				
 				<p>
 				`&Fouriertrf;[g(m,n) ** h(m,n)] hArr hat(g)(k,l)* hat(h)(k,l) ` <br>
-				FT the Convolution of Space Domain = Multiplication in Frequency Domain
+				FT the Convolution of the Space Domain = Multiplication in the Frequency Domain
 				</p>
 				
-				<img src="./img/methods.png">
+				<p>The convolution property is what makes the Fourier Transform so powerful for image processing.
+				Applying filters by directly solving the convolution (Method 1) turns out to get much
+				more expensive as the size of the filter and input image grows.
+				(For each pixel in the input image, every pixel in the filter image gets multiplied and
+				summated. Thats alot of multiplication!)</p>
 				
+			
+				
+				<ol style="font-size: 20px;"><p style="text-decoration:underline;">Applying Filters with FTs</p>
+					<li>Apply the FT on the input and filter image independently.<br>
+					`&Fouriertrf;(g(m,n)) * &Fouriertrf;(h(m,n)) = hat(g)(k,l) * hat(h)(k,l)`</li>
+					
+					<li>Perform multiplication and then use the Convolution Property.<br>
+					`hat(g)(k,l) * hat(h)(k,l) = &Fouriertrf;[g(m,n) ** h(m,n)]`</li>
+					
+					<li>Apply the inverse FT to obtain the filtered image.<br>
+					`&Fouriertrf;^-1[&Fouriertrf;(g(m,n) ** h(m,n))] = g(m,n) ** h(m,n)`
+					</li>
+				</ol>
+				
+				<br>
+				<img src="./img/methods.png">
+				<a href="http://www.robots.ox.ac.uk/~az/lectures/ia/lect2.pdf">http://www.robots.ox.ac.uk/~az/lectures/ia/lect2.pdf</a>
 				
             </div>
         </div>
@@ -242,6 +265,9 @@
                     </li>
                 </ul>
 				
+				<p>The beautiful equations in this guide were done with 
+				<a href="https://www.mathjax.org/">MathJax</a>. 
+				It is an extremely flexible JavaScript API for displaying mathematics.</p>
 				<p> References: <br>
 				http://www.thefouriertransform.com/transform/properties.php <br>
 				http://www.di.univr.it/documenti/OccorrenzaIns/matdid/matdid027832.pdf</p>
