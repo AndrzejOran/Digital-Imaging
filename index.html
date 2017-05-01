@@ -104,7 +104,7 @@
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Some Background</h2>
 				<p>Useful Knowledge: Multivariate Calculus, Linear Algebra, Fourier Transform, MATLAB
-                <p>Digital images are made up of many individual pixels oraganized into rows and colums.
+                <p>Digital images are made up of many individual pixels oraganized into rows and columns.
 				That makes them discrete and two dimensional.</p>
 				
 				
@@ -114,7 +114,7 @@
 				</p>
 				
 				<a href="https://www.w3schools.com/colors/colors_picker.asp">W3 Schools Color Picker</a>
-				<p>Pink: Hex value = #ff8080, rgb(255, 128, 128)</p>
+				<p>Watermelon Pink: Hexadecimal value = #ff8080, rgb(255, 128, 128)</p>
                 <img src="./img/pixelwatermelon.png">
 				<p></p>
             </div>
@@ -126,17 +126,18 @@
         <div class="download-section">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <h2>Two Dimensional Discrete Convolution (Method 1)</h2>
+                    <h2>Two Dimensional Discrete Convolution <br>(Method 1)</h2>
                     <p>Convolution (Denoted `**`  ) expresses the amount of overlap of one function as it is shifted 
 					over another function, producing a third function. The definition is given below:</p> <br>
 					
-					<p> ` y(m,n) = g(m,n) ** h(m,n) = sum_(j= -oo)^oo sum_(i= -oo)^oo g(i,j) * h(m-i,n-j)`
+					<p> ` y(m,n) = g(m,n) ** h(m,n) = sum_(i=o)^(m-1) sum_(j=o)^(n-1) g(i,j) * h(m-i,n-j)` <br>
+					where m = Rows, n = Columns
 					</p>
 					
 					<p>
-					Output = y[m,n] <br>
-					Input  = g[m,n] <br>
-					Filter = h[m,n]
+					Output = `y(m,n)` <br>
+					Input  = `g(m,n)` <br>
+					Filter = `h(m,n)`
 					
 					<p> For image processing, the steps taken are:
 					
@@ -172,21 +173,47 @@
     <section id="contact" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>Fourier Transforms (Method 2)</h2>
+                <h2>Fourier Transforms <br>(Method 2)</h2>
                 <p>The Fourier Transform (Denoted `&Fouriertrf;`  ) is used to 
 				turn functions with a domain of time `g(t)` to a domain of frequency `hat(g)(f)`.
-				This process can be reversed using the Inverse Fourier Transform (Denoted `&Fouriertrf;^-1`).</p>
+				This process can also be reversed using the Inverse Fourier Transform (Denoted `&Fouriertrf;^-1`)
+				The FT has many useful properties but we will only look at a few in this guide.
+				In terms of digital images you can think of the transform like this:</p>
 				
+				<p>Space Domain    
+				(Pixel Corrdinates)	<br>	
+				`g(m,n)` where `m` = Rows , `n` = Columns <br> 
+			
+				`&Fouriertrf;^^^` <br> `vvv&Fouriertrf;^-1` <br>
+				Spatial Frequency Domain
+				(Number of cycles per degree of visual angle)<br>
+				`hat(g)(k,l)` where `k` = Horizontal Frequency, `l` = Vertical Frequency</p>
+				
+				<p>For Continuous Functions:</p>
 				<p> `&Fouriertrf; (g(t)) = hat (g) (f) = int_-oo^oo g(t)e^(-2pi itf) dt `</p>
 				
 				<p> `&Fouriertrf;^-1 (hat (g)(f)) = g(f) = int_-oo^oo hat(g)(f)e^(2pi itf) df `</p>
 				
-				<p>The Convolution Property of the Fourier Transform</p>
+				<p>For 2D Discrete Functions</p>
+				<p> `&Fouriertrf; (g(k,l)) = hat (g) (k,l) = sum_(m=0)^(M-1) sum_(n=0)^(N-1) g(m,n)e^(-2pi itf) dt `</p>
 				
-
+				<p> `&Fouriertrf;^-1 (hat (g)(f)) = g(f) = int_-oo^oo hat(g)(f)e^(2pi itf) df `</p>
+				
+				<p style="text-decoration:underline;">Periodicity and Discrete Fourier Transforms<p>
+				<p>It is important to note that 2D DFTs are periodic functions. Meaning, the output of the
+				function repeats itself at regular intervals. Later on we must take this into account
+				when applying our filter.</p>
+				
+				<p>`hat (g)(k + M, l + N) = hat(g)(k,l)` , Period = [M,N] </p>
+				
+				<p>`g(m + M, n + N) = g(m,n)` , Period = [M,N]</p>
+				
+				<p style="text-decoration:underline;">The Convolution Property of the Fourier Transform</p>
+				
+				<p> </p>
 				<p>
-				`f(x,y) ** h(x,y) hArr F(u,v)*H(u,v) ` <br>
-				Convolution in Space Domain = Multiplication in Frequency Domain
+				`&Fouriertrf;[g(m,n) ** h(m,n)] hArr hat(g)(k,l)* hat(h)(k,l) ` <br>
+				FT the Convolution of Space Domain = Multiplication in Frequency Domain
 				</p>
 				
 				<img src="./img/methods.png">
@@ -216,7 +243,8 @@
                 </ul>
 				
 				<p> References: <br>
-				http://www.thefouriertransform.com/transform/properties.php</p>
+				http://www.thefouriertransform.com/transform/properties.php <br>
+				http://www.di.univr.it/documenti/OccorrenzaIns/matdid/matdid027832.pdf</p>
             </div>
         </div>
     </section>
